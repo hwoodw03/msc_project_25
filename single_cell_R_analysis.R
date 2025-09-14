@@ -111,9 +111,9 @@ seurat_integrated <- ScaleData(seurat_integrated, verbose = FALSE)
 seurat_integrated <- RunPCA(seurat_integrated, verbose = FALSE)
 ElbowPlot(seurat_integrated, ndims = 50)
 
-#choose 20 dims based on elbow plot 
+#choose dims based on elbow plot 
 
-dims_to_use <- 1:20
+dims_to_use <- 1:30
 seurat_integrated <- FindNeighbors(seurat_integrated, dims = dims_to_use)
 seurat_integrated <- FindClusters(seurat_integrated, resolution = 0.1)
 seurat_integrated <- RunUMAP(seurat_integrated, dims = dims_to_use)

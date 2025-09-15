@@ -297,12 +297,16 @@ dtu_post <- posthoc_and_stager(dturtle = dtu, ofdr = 1, posthoc = 0)
 
 # can visualise results by select interested feature to look at the heatmap/proportion plot of isofrom expression 
                 
-plot_proportion_barplot(dturtle = dtu_post,  genes = "CPLX1",  meta_gene_id = "gene_id.1")
-plot_proportion_pheatmap(dturtle = dtu_post, genes = "CPLX1", sample_meta_table_columns = c("sample_id","condition"),                                 include_expression = TRUE, treeheight_col=20)
+p1 <- plot_proportion_barplot(dturtle = dtu_post,  genes = "CPLX1",  meta_gene_id = "gene_id.1")
+p1$CPLX1
+p2 <- plot_proportion_pheatmap(dturtle = dtu_post, genes = "CPLX1", sample_meta_table_columns = c("sample_id","condition"),                                 include_expression = TRUE, treeheight_col=20)
+p2$CPLX1
 
 # visualise CPLX1-201 and CPLX2-203 expression plots 
-FeaturePlot(bulk_test_tissue, features = c("CPLX1-201"), order = TRUE, label = TRUE)
-FeaturePlot(bulk_test_tissue, features = c("CPLX1-203"), order = TRUE, label = TRUE) 
+cplx1_isoform_plot <- FeaturePlot(bulk_test_tissue, features = c("CPLX1-201"), order = TRUE, label = TRUE)
+cplx1_isoform_plot <- FeaturePlot(bulk_test_tissue, features = c("CPLX1-203"), order = TRUE, label = TRUE)
+cplx1_isoform_plot$CPLX1
+#save ggsave(filename = file.path(output_dir, "CPLX1-203.pdf"), plot = cplx1_isoform_plot, width = 10, height = 6)
 
 # view difference in gene isoforms
 plot_transcripts_view(dturtle = dtu_post,   genes = "CPLX1",   gtf = "PATH_TO_FILE/gencode.v47.annotation.gtf",   genome = 'hg38',  one_to_one = TRUE)
